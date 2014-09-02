@@ -10,5 +10,5 @@ nodemon.json
 */nodemon.json
 npm_debug.log
 */npm_debug.log
-npm_modules/
-npm_modules/*
+node_modules
+node_modules/*
