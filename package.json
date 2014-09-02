@@ -3,6 +3,10 @@
   "description": "Node.js wrapper for Zendrive API",
   "version": "0.1.0",
   "main": "zendrive",
+  "scripts": {
+    "prestart": "npm prune && npm rebuild",
+    "start": "node ./"
+  },
   "dependencies" : {
     "request": "2.40.0"
   },
