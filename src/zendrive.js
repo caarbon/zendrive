@@ -19,17 +19,16 @@ function v1(opts) {
         val;
     }
 
-    console.log(preparedParams);
-
     request({
       url: [url, 'v1', path].join('/'),
-      method: 'get',
+      method: 'GET',
       qs: preparedParams,
       json: true
     }, function(err, res, body) {
       if (body && body.fault) {
         return callback(new ApiErr(body.fault.faultstring || 'An error occurred', body.fault));
       }
+
       callback(err, body);
     });
 
