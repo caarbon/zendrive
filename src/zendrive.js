@@ -83,10 +83,6 @@ v1.prototype.userTrips = function(id, params, callback) {
 
 function zendrive(opts) {
   this.v1 = new v1(opts);
-
-  for (var key in this.v1) {
-    this[key] = this[key] || this.v1[key];
-  }
 }
 
 module.exports = zendrive;
