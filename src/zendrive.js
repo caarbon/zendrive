@@ -54,13 +54,8 @@ v1.prototype.score = function(params, callback) {
   return this.makeRequest(params, 'score', callback);
 };
 
-v1.prototype.globalScore = function(params, callback) {
-  if (arguments.length < 2) {
-    callback = params;
-    params = {};
-  }
-  
-  return this.makeRequest(params, 'global_score', callback);
+v1.prototype.globalScore = function(callback) {
+  return this.makeRequest({}, 'global_score', callback);
 };
 
 v1.prototype.userScore = function(id, params, callback) {
