@@ -167,3 +167,34 @@ zd.v1.userTrips(userId, {
   console.log(data);
 });
 ```
+
+### Trip Score
+
+request parameters | type | description
+--- | --- | ---
+fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
+
+response field | description
+--- | ---
+score.fuel_efficiency_score | Average economical driving score for user over the duration of trip. A fuel_efficiency_score of 0.7 implies driver is operating at 70% of maximum fuel efficiency possible.
+score.lawful_score | Average law abiding score for user over the duration of trip.
+score.cautious_score | Average cautious score for user over the duration of trip.
+score.zendrive_score | Average overall Zendrive score for user over the duration of trip.
+info.distance_km | Total distance in km logged by user during the specified date range.
+info.drive_time_hours | Total drive time over all of users trips during the specified date range.
+info.start_time | Start time of trip in ISO format.
+info.end_time | End time of trip in ISO format.
+
+```js
+zd.v1.tripScore(userId, tripId, function(err, data) {
+  console.log(data);
+});
+
+// or
+
+zd.v1.tripScore(userId, tripId, {
+  fields: 'score'
+}, function(err, data) {
+  console.log(data);
+});
+```
