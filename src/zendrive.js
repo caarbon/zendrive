@@ -76,6 +76,15 @@ v1.prototype.userTrips = function(id, params, callback) {
   return this.makeRequest(params, ['user', id, 'trips'].join('/'), callback);
 };
 
+v1.prototype.tripScore = function(id, tripId, params, callback) {
+  if (arguments.length < 4) {
+    callback = params;
+    params = {};
+  }
+
+  return this.makeRequest(params, ['user', id, 'trip', tripId].join('/'), callback); 
+};
+
 function zendrive(opts) {
   this.v1 = new v1(opts);
 }
