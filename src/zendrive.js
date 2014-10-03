@@ -1,5 +1,4 @@
 var request = require('request');
-var ApiErr = require('./ApiErr.js');
 var url = 'http://api.zendrive.com';
 
 function v1(opts) {
@@ -26,7 +25,7 @@ function v1(opts) {
       json: true
     }, function(err, res, body) {
       if (body && body.fault) {
-        return callback(new ApiErr(body.fault.faultstring || 'An error occurred', body.fault));
+        return callback(new Error(body.fault.faultstring || 'An error occurred'));
       }
 
       callback(err, body);
