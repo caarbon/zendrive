@@ -1,7 +1,7 @@
 {
   "name": "zendrive",
   "description": "Node.js wrapper for Zendrive API",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "zendrive",
   "scripts": {
     "prestart": "npm prune && npm rebuild",
