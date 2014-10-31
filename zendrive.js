@@ -24,8 +24,10 @@ function v1(opts) {
       qs: preparedParams,
       json: true
     }, function(err, res, body) {
-      if (body && body.fault || typeof body !== 'object') {
-        return callback(new Error(body.fault.faultstring || 'An error occurred'));
+      if (body && body.fault && body.fault.faultstring) {
+        return callback(new Error(body.fault.faultstring));
+      } else if (typeof body !== 'object') {
+        return callback(new Error('An error occurred'));
       }
 
       callback(err, body);
