@@ -4,11 +4,18 @@
   "version": "0.1.3",
   "main": "zendrive",
   "scripts": {
-    "prestart": "npm prune && npm rebuild",
-    "start": "node ./"
+    "test": "grunt lint" 
   },
   "dependencies" : {
     "request": "2.40.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-jscs": "^0.8.1",
+    "grunt-notify": "^0.3.1",
+    "matchdep": "^0.3.0"
   },
   "repository": "git://github.com/caarbon/zendrive"
 }

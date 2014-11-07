@@ -1,7 +1,7 @@
 var request = require('request');
 var url = 'http://api.zendrive.com';
 
-function v1(opts) {
+function V1(opts) {
   this.makeRequest = function(params, path, callback) {
     var preparedParams = {
       apikey: opts.key
@@ -37,7 +37,7 @@ function v1(opts) {
   };
 }
 
-v1.prototype.users = function(params, callback) {
+V1.prototype.users = function(params, callback) {
   if (arguments.length < 2) {
     callback = params;
     params = {};
@@ -46,48 +46,48 @@ v1.prototype.users = function(params, callback) {
   return this.makeRequest(params, 'users', callback);
 };
 
-v1.prototype.score = function(params, callback) {
+V1.prototype.score = function(params, callback) {
   if (arguments.length < 2) {
     callback = params;
     params = {};
   }
-  
+
   return this.makeRequest(params, 'score', callback);
 };
 
-v1.prototype.globalScore = function(callback) {
+V1.prototype.globalScore = function(callback) {
   return this.makeRequest({}, 'global_score', callback);
 };
 
-v1.prototype.userScore = function(id, params, callback) {
+V1.prototype.userScore = function(id, params, callback) {
   if (arguments.length < 3) {
     callback = params;
     params = {};
   }
-  
+
   return this.makeRequest(params, ['user', id, 'score'].join('/'), callback);
 };
 
-v1.prototype.userTrips = function(id, params, callback) {
+V1.prototype.userTrips = function(id, params, callback) {
   if (arguments.length < 3) {
     callback = params;
     params = {};
   }
-  
+
   return this.makeRequest(params, ['user', id, 'trips'].join('/'), callback);
 };
 
-v1.prototype.tripScore = function(id, tripId, params, callback) {
+V1.prototype.tripScore = function(id, tripId, params, callback) {
   if (arguments.length < 4) {
     callback = params;
     params = {};
   }
 
-  return this.makeRequest(params, ['user', id, 'trip', tripId].join('/'), callback); 
+  return this.makeRequest(params, ['user', id, 'trip', tripId].join('/'), callback);
 };
 
 function zendrive(opts) {
-  this.v1 = new v1(opts);
+  this.v1 = new V1(opts);
 }
 
 module.exports = zendrive;
