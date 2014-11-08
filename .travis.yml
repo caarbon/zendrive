@@ -4,12 +4,5 @@ node_js:
 - '0.10'
 before_install:
   # build bundle
+  - npm install
   - npm install grunt-cli -g
-notifications:
-  email:
-    recipients:
-    - engineers@caarbon.com
-    on_success: change
-    on_failure: always
-  slack:
-    secure: OxFBU8ciX/DCOXuL8m1WKQRMLinz7HKEXQfnL23ptGbJiBW+8vnMY5IHJoqTm6FRlxwoQmK+y/gF3gdLL5K3KjKKXjFV0k2uzdU15NyWHjMDAmvc33WlqROzJPIQt1TJFH5Hz463UMXqZ+6wdUHEY5JoN2L2oy8PP2MBfTOj+qw=
