@@ -1,7 +1,7 @@
 {
   "name": "zendrive",
   "description": "Node.js wrapper for Zendrive API",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "zendrive",
   "scripts": {
     "test": "grunt lint" 
