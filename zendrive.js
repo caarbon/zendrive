@@ -28,6 +28,8 @@ function V1(opts) {
         return callback(new Error(body.fault.faultstring));
       } else if (typeof body !== 'object') {
         return callback(new Error('An error occurred'));
+      } else if (body.error && typeof body.error === 'string') {
+        return callback(new Error(body.error));
       }
 
       callback(err, body);
