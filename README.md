@@ -30,7 +30,7 @@ zd.v1.drivers(function(err, data) {
 
 // or
 
-zd.v1.driverScore({
+zd.v1.drivers({
   start: new Date(1409960880396),
   end: new Date(),
   fields: 'score',
