@@ -25,9 +25,6 @@ function V1(opts) {
       qs: preparedParams,
       json: true
     }, function(err, res, body) {
-      console.log(res.statusCode);
-      console.log(body);
-
       if (body && body.fault && body.fault.faultstring) {
         return callback(new Error(body.fault.faultstring));
       } else if (typeof body !== 'object') {
