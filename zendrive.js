@@ -97,7 +97,7 @@ V1.prototype.score = function(params, callback) {
 };
 
 V1.prototype.tripScore = function(driverId, tripId, params, callback) {
-  if (arguments.length < 3) {
+  if (arguments.length < 4) {
     callback = params;
     params = {};
   }

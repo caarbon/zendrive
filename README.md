@@ -15,32 +15,22 @@ var zd = new Zendrive({
 // methods available on zd.v1
 ```
 
-### Users
+## API
 
-request parameters | type | description
---- | --- | ---
-start | Date | Response will contain active users between start and end dates [ both inclusive ]
-end | Date | Response will contain active users between start and end dates [ both inclusive ]
-fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
-limit | Number | pagination limit
-offset | Number | pagination offset
-ids | Array of Strings | list of user ids for which data should be returned - Will return these users even if they were not active between start and end date
+For full documentation, check out the official [Zenrive API docs](http://developers.zendrive.com/docs/api/reference/).
 
-response field | description
---- | ---
-start_date | same as requested, else start of last week
-end_date | same as requested, else today
-next_offset | value that should passed for next page of results (if undefined, implies end of results)
-users | array of user results
+### Drivers
+
+_list drivers in a fleet_
 
 ```js
-zd.v1.users(function(err, data) {
+zd.v1.drivers(function(err, data) {
   console.log(data);
 });
 
 // or
 
-zd.v1.users({
+zd.v1.driverScore({
   start: new Date(1409960880396),
   end: new Date(),
   fields: 'score',
@@ -51,25 +41,82 @@ zd.v1.users({
 });
 ```
 
-### Score Statistics
+### Driver Score
 
-request parameters | type | description
---- | --- | ---
-start | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-end | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
-limit | Number | pagination limit
-offset | Number | pagination offset
-ids | Array of Strings | list of user ids for which data should be returned - Will return these users even if they were not active between start and end date
+```js
+zd.v1.driverScore(191, function(err, data) {
+  console.log(data);
+});
 
-response field | description
---- | ---
-start_date | same as requested, else start of last week
-end_date | same as requested, else today
-score.fuel_efficiency_score | Average economical driving score for entire fleet over the duration requested - A 1.0 implies 100% efficiency
-score.lawful_score | Average law abiding score for entire fleet over the duration requested
-score.cautious_score | Average cautious score for entire fleet over the duration requested
-score.zendrive_score | Average overall Zendrive score for entire fleet over the duration requested
+// or
+
+zd.v1.driverScore(191, {
+  start: new Date(1409960880396),
+  end: new Date(),
+  fields: 'score'
+}, function(err, data) {
+  console.log(data);
+});
+```
+
+### Driver Sessions
+
+```js
+zd.v1.driverSessions(230, function(err, data) {
+  console.log(data);
+});
+
+// or
+
+zd.v1.driverSessions(230, {
+  start: new Date(1409960880396),
+  end: new Date(),
+  limit: 10,
+  offset: 0
+}, function(err, data) {
+  console.log(data);
+});
+```
+
+### Driver Trips
+
+```js
+zd.v1.driverTrips(761, function(err, data) {
+  console.log(data);
+});
+
+// or
+
+zd.v1.driverTrips(761, {
+  start: new Date(1409960880396),
+  end: new Date(),
+  fields: 'score',
+  limit: 10,
+  offset: 0
+}, function(err, data) {
+  console.log(data);
+});
+```
+
+### Glboal Score Distribution
+
+```js
+zd.v1.globalScore(function(err, data) {
+  console.log(data);
+});
+```
+
+### Groups
+
+_List Driver Groups in a Fleet_
+
+```js
+zd.v1.groups(function(err, data) {
+  console.log(data);
+});
+```
+
+### Fleet Scores
 
 ```js
 zd.v1.score(function(err, data) {
@@ -81,87 +128,6 @@ zd.v1.score(function(err, data) {
 zd.v1.score({
   start: new Date(1409960880396),
   end: new Date(),
-  fields: 'score',
-  limit: 10,
-  offset: 0
-}, function(err, data) {
-  console.log(data);
-});
-```
-
-### Global Score
-
-This doesn't take any paramaters
-
-This is for the global Zendrive score information.
-
-response field | description
---- | ---
-distribution | Score distribution for each type of score over global population of drivers known to Zendrive
-
-```js
-zd.v1.globalScore(function(err, data) {
-  console.log(data);
-});
-```
-
-### User Score
-
-request parameters | type | description
---- | --- | ---
-start | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-end | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
-
-response field | description
---- | ---
-start_date | same as requested, else start of last week
-end_date | same as requested, else today
-score.fuel_efficiency_score | Average economical driving score for user over the duration requested - A 1.0 implies 100% efficiency
-score.lawful_score | Average law abiding score for user over the duration requested
-score.cautious_score | Average cautious score for user over the duration requested
-score.zendrive_score | Average overall Zendrive score for user over the duration requested
-
-```js
-zd.v1.userScore(userId, function(err, data) {
-  console.log(data);
-});
-
-// or
-
-zd.v1.userScore(userId, {
-  start: new Date(1409960880396),
-  end: new Date(),
-  fields: 'score'
-}, function(err, data) {
-  console.log(data);
-});
-```
-
-### User Trips
-
-request parameters | type | description
---- | --- | ---
-start | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-end | Date | Statistics that are computed based on data from start to end dates [ both inclusive ]
-fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
-
-response field | description
---- | ---
-start_date | same as requested, else start of last week
-end_date | same as requested, else today
-trips | list of trips for the user
-
-```js
-zd.v1.userTrips(userId, function(err, data) {
-  console.log(data);
-});
-
-// or
-
-zd.v1.userTrips(userId, {
-  start: new Date(1409960880396),
-  end: new Date(),
   fields: 'score'
 }, function(err, data) {
   console.log(data);
@@ -170,30 +136,20 @@ zd.v1.userTrips(userId, {
 
 ### Trip Score
 
-request parameters | type | description
---- | --- | ---
-fields | String | `info`: Returns only information about user, `score`: Returns driving behavior scores
-
-response field | description
---- | ---
-score.fuel_efficiency_score | Average economical driving score for user over the duration of trip. A fuel_efficiency_score of 0.7 implies driver is operating at 70% of maximum fuel efficiency possible.
-score.lawful_score | Average law abiding score for user over the duration of trip.
-score.cautious_score | Average cautious score for user over the duration of trip.
-score.zendrive_score | Average overall Zendrive score for user over the duration of trip.
-info.distance_km | Total distance in km logged by user during the specified date range.
-info.drive_time_hours | Total drive time over all of users trips during the specified date range.
-info.start_time | Start time of trip in ISO format.
-info.end_time | End time of trip in ISO format.
+_Trip Score for a given Driver and Trip_
 
 ```js
-zd.v1.tripScore(userId, tripId, function(err, data) {
+var driverId = 554;
+var tripId = 1089;
+
+zd.v1.tripScore(driverId, tripId, function(err, data) {
   console.log(data);
 });
 
 // or
 
-zd.v1.tripScore(userId, tripId, {
-  fields: 'score'
+zd.v1.tripScore(driverId, tripId, {
+  fields: 'info'
 }, function(err, data) {
   console.log(data);
 });
