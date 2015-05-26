@@ -17,7 +17,5 @@
   "node": true,
   "browser": false,
   "loopfunc": true,
-  "globals": {
-    "config": true
-  }
+  "globals": {}
 }

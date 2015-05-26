@@ -2,7 +2,6 @@
   "excludeFiles": [ "node_modules/**", "ignore/**" ],
   "disallowTrailingWhitespace": true,
   "requireLineFeedAtFileEnd": true,
-  "disallowDanglingUnderscores": true,
   "disallowEmptyBlocks": true,
   "disallowKeywordsOnNewLine": [ "else", "catch", "finally" ],
   "disallowMixedSpacesAndTabs": true,

@@ -1,8 +1,0 @@
-language: node_js
-install: true
-node_js:
-- '0.10'
-before_install:
-  # build bundle
-  - npm install
-  - npm install grunt-cli -g
